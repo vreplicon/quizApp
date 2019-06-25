@@ -27,12 +27,17 @@ function loadQuestion() {
     $('.quizQuestion').html(
         `<h2>${QNA[qNum].q}</h2>\
         <form class="questionForm">\
-        <label class="container">${QNA[qNum].a1}<input type=\
-        "radio" name="answer" value=1></label><label class="container">${QNA[qNum].a2}<input type=\
-        "radio" name="answer" value=2></label><label \
-        class="container">${QNA[qNum].a3}<input type="radio" name="answer" value=3>\
-        </label><label class="container">${QNA[qNum].a4}<input\
-        type="radio" name="answer" value=4></label>\
+        <label for="1">${QNA[qNum].a1}\
+        <input type="radio" name="answer" id="1" value=1>
+        </label>\
+        <label for="2">${QNA[qNum].a2}\
+        <input type="radio" name="answer" id="2" value=2>
+        </label>\
+        <label for="3">${QNA[qNum].a3}\
+        <input type="radio" name="answer" id="3" value=3>\
+        </label>\
+        <label for="4">${QNA[qNum].a4}\
+        <input type="radio" name="answer" id="4" value=4></label>\
         <button type="submit" class="submit">Submit</button>\
         </form>`
     );
