@@ -73,7 +73,7 @@ function handleNextButton() {
     $('.quizResponse').on('click', '.next', event => {
         $('.quizResponse').css('display', 'none');
         
-        if (qNum < 2) {
+        if (qNum < 10) {
             loadQuestion();
         } else {
             loadEnd();
