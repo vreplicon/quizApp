@@ -1,6 +1,23 @@
 let qNum = 0;
 let score = 0;
 
+
+function handleStartButton() {
+    $('.quizIntro').on('click', '.startButton', event => {
+        loadHeader(); 
+        loadQuestion();
+    });
+}
+
+
+function loadHeader() {
+    $('.quizHeader').css('display', 'flex');
+    $('.quizHeader').html(
+        `<h3>Progress: ${qNum}/10</h3>\
+        <h3>Score: ${score}/10</h3>`
+    );
+}
+
 function loadQuestion() {
 
     $('.quizIntro').css('display', 'none');
@@ -21,34 +38,47 @@ function loadQuestion() {
     );
 }
 
+function handleSubmitButton() {
+    $('.quizQuestion').on('click', '.submit', event => {
 
-function loadHeader() {
-    $('.quizHeader').css('display', 'flex');
-    $('.quizHeader').html(
-        `<h3>Progress: ${qNum}/10</h3>\
-        <h3>Score: ${score}/10</h3>`
-    );
+        event.preventDefault();
+        $('.quizQuestion').css('display', 'none');
+        $('.quizResponse').css('display', 'flex');
+        
+        if (answerCorrect()) {
+            score++;
+            $('.quizResponse').html(`<h2>Correct!</h2><p>${QNA[qNum].note}</p>\
+            <button class="next">Next</button>`);
+        } else {
+            $('.quizResponse').html(`<h2>Incorrect</h2><p>${QNA[qNum].note}</p>\
+            <button class="next">Next</button>`);
+        }
+
+        qNum++;
+        loadHeader();
+
+    });
 }
 
-function isCorrect() {
+function answerCorrect() {
     let selected = $('input:checked').val();
     if (selected == QNA[qNum].ans) {
         return true;
     } else {
         return false;
     }
-
 }
 
-
-function getRespone() {
-    if (score < 4) {
-        return ENDRESPONSE.bad;
-    } else if (score < 8) {
-        return ENDRESPONSE.okay
-    } else {
-        return ENDRESPONSE.best;
-    }
+function handleNextButton() {
+    $('.quizResponse').on('click', '.next', event => {
+        $('.quizResponse').css('display', 'none');
+        
+        if (qNum < 2) {
+            loadQuestion();
+        } else {
+            loadEnd();
+        }
+    });
 }
 
 function loadEnd() {
@@ -61,54 +91,17 @@ function loadEnd() {
     );
 }
 
-$(function() {
-    $('.quizIntro').on('click', '.startButton', event => {
-        event.preventDefault();
-        $('.quizIntro').css('display', 'none');
-        $('.quizQuestion').css('display', 'block');
-        loadQuestion();
-        loadHeader();
-             
-    });
+function getRespone() {
+    if (score < 4) {
+        return ENDRESPONSE.bad;
+    } else if (score < 8) {
+        return ENDRESPONSE.okay
+    } else {
+        return ENDRESPONSE.best;
+    }
+}
 
-    $('.quizQuestion').on('change', 'label', event => {
-        $('label').removeClass('js-checked');
-        $('input:checked').closest('label').toggleClass('js-checked');
-
-    });
-
-
-    $('.quizQuestion').on('click', '.submit', event => {
-        if (qNum < 2) {
-            event.preventDefault();
-            isCorrect();
-            $('.quizQuestion').css('display', 'none');
-            $('.quizResponse').css('display', 'flex');
-            if (isCorrect()) {
-                score++;
-                $('.quizResponse').html(`<h2>Correct!</h2><p>${QNA[qNum].note}</p>\
-                <button class="next">Next</button>`);
-            } else {
-                $('.quizResponse').html(`<h2>Incorrect</h2><p>${QNA[qNum].note}</p>\
-                <button class="next">Next</button>`);
-            }
-            qNum++;
-            loadHeader();
-        } else {
-            
-        }
-    });
-
-    $('.quizResponse').on('click', '.next', event => {
-        $('.quizResponse').css('display', 'none');
-        
-        if (qNum < 2) {
-            loadQuestion();
-        } else {
-            loadEnd();
-        }
-    });
-
+function handleRestart() {
     $('.quizEnd').on('click', '.restart', event => {
         $('.quizEnd').css('display', 'none');
         $('.quizHeader').css('display', 'none');
@@ -116,4 +109,22 @@ $(function() {
         score = 0;
         $('.quizIntro').css('display', 'flex');
     });
+}
+
+function handleAnswerButtons() {
+    $('.quizQuestion').on('change', 'label', event => {
+        $('label').removeClass('js-checked');
+        $('input:checked').closest('label').toggleClass('js-checked');
+
+    });
+}
+
+$(function() {
+
+    handleStartButton();
+    handleNextButton();
+    handleSubmitButton();
+    handleRestart();
+    handleAnswerButtons();
+
 });
