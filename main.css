@@ -7,13 +7,27 @@
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
-    top: 100px;
-    margin-left: 100px;
-    margin-right: 100px;
+    top: 50px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(113, 147, 180);
+    opacity: 0.8;
 }
+
+body {
+    background: url(spaceBackground.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
 
 .quizIntro {
     display: flex;
+    top: 100px;
+}
+
+input {
+    opacity: 0;
 }
 
 p {
@@ -23,6 +37,7 @@ p {
 
 .quizIntro > h1 {
     font-size: 40px;
+    font-family: 'Audiowide', cursive;
 }
 
 button {
@@ -33,9 +48,13 @@ button {
     margin-bottom: 30px;
 }
 
-button:hover {
+button:hover, button:focus {
     background-color: darkslategray;
     color: white;
+}
+
+.quizQuestion {
+    margin-bottom: 100px;
 }
 
 
@@ -49,29 +68,33 @@ form {
 
 form > label {
     border: 2px solid black;
-    width: 200px;
+    border-radius: 5px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
     margin-bottom: 20px;
     font-size: 22px;
+    text-align: center;
+    padding-top: 20px;
 }
 
-h2 {
+form>label:hover, form>label:focus {
+    border-color:white;
+}
+
+h2, h3 {
     text-align: center;
+}
+
+.js-checked {
+    background-color:rgb(13, 90, 136);
 }
 
 .quizHeader {
-    position: relative;
-    top: 50px;
-    flex-direction: column;
-}
-
-.progressBar {
-    background-color: lightgray;
-    height: 30px;
-    margin-left: 150px;
-    margin-right: 150px;
-    border-radius: 5px;
-}
-
-h3 {
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    color: white;
 }

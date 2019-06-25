@@ -92,3 +92,9 @@ const QNA = [
         note: "JKDFSJKGLSJK"
     }
 ];
+
+const ENDRESPONSE = {
+    best: "You are out of this world!",
+    okay: "You need to recheck your star charts.", 
+    bad: "We have a problem Huston."
+};
