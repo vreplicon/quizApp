@@ -25,10 +25,10 @@ function loadQuestion() {
 
 
     $('.quizQuestion').html(
-        `<h2>${QNA[qNum].q}</h2>\
-        <form class="questionForm">\
-        <label for="1">${QNA[qNum].a1}\
-        <input type="radio" name="answer" id="1" value=1>
+        `<form class="questionForm">\
+        <legend>${QNA[qNum].q}</legend>\
+        <label class="container js-checked" for="1">${QNA[qNum].a1}\
+        <input type="radio" name="answer" id="1" value=1 required checked>\
         </label>\
         <label for="2">${QNA[qNum].a2}\
         <input type="radio" name="answer" id="2" value=2>
