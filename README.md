@@ -1,6 +1,6 @@
-# quizApp
+# universeTrivia
 
-A basic html page that quizzes the user on their knowledge of outer space trivia.
+A basic javascript app that quizzes the user on their knowledge of outer space trivia.
 
 ## Usage
 
